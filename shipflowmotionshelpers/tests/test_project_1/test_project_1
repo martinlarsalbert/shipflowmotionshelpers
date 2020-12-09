@@ -1,0 +1,56 @@
+xflow
+  titl( titl="M5030-01-A"  )
+  prog( xptd, motions )
+  hull( mono, bdens = 0.6, nohr )
+  offs( file="off_dummy", lpp=154 )
+  mass( zcg = 10.98, kxx = 10.5327, kyy = 43.12, kzz = 42.889, kxy = 0.4004, kxz=7.4998, kyz=0.1232 )
+  ipos( tf = 7.033, ta = 7.606, roll=12, hld2, hld4, hld6 )
+/  damp( b4l = 6.45e07, b4q = 2.90e08 )
+  damp( b4l = 0.0, b4q = 0.0 )
+  vshi( vknot = 10, reflen = 154 )
+  /wave( irregular, second, jonswap, ncomp=30, hs=3.25, tz=6.9 )
+  /wave( regular, fifth, height=[0.0065], length=[1.0], direction=[180], phase=[180] )
+  fixe( surge, yaw, notow )
+  towi( k2nd = 0.01, k6nd = 0.01 )
+  flui( dens = 1026 )
+  symm( nosym )
+/  mpnt( npoints=3, x=[-1,0,1], y=[-1,0,1], z=[-1,0,1]
+/  prto(trace)
+end
+xmtd
+/  free( upst = 4.0, downst = 4.0, side = 4.0, npxp = 48, npyp = 24,
+/        level = 7,clevel=6, curv = 0.00002, wladapt, dofactor=100.0, dopower=2.0, dopadding=2.0 )
+/  free( upst = 5.0, downst = 5.0, side = 5.0, npxp = 40, npyp = 20,
+/        level = 7,clevel=6, curv = 0.00002, wladapt, dofactor=50.0, dopower=2.0, dopadding=2.0,
+/        hullzshift = 0.001, actoff = 0.0 )
+  free( upst = 3.0, downst = 3.0, side = 3.0, npxp = 24, npyp = 12,
+        level = 6,clevel=5, curv = 0.00002, wladapt, dofactor=200.0, dopower=1.0, dopadding=1.0)
+/  refinement(npoints=4, x=[0,0,4,4], y=[-4,4,4,-4], level=8, clevel=7,curv=0.00002 )
+/  refinement(npoints=4, x=[-1,-1,1,1], y=[-1,1,1,-1], level=5, clevel=5,curv=0.0001 )
+/  refinement(npoints=4, x=[-0.55,-0.55,3.0,3.0], y=[3.0,3.0,-3.0,-3.0], curv=0.001 )
+/  refinement(npoints=4, x=[0.4,0.4,1.0,1.0], y=[-0.2,0.2,0.2,-0.2], curv=0.00001 )
+/  import( file="../M5030-01-A_hull_course.obj", nomir )
+/  import( file="../M5030-01-A_hull_course.obj", nomir, ymir, nrev )
+/  import( file="../M5030-01-A_transom_course.obj", transom, nomir )
+/  import( file="../M5030-01-A_transom_course.obj", transom, nomir, ymir, nrev )
+  import( file="../M5030-01-A_hull_vcourse.obj", nomir )
+  import( file="../M5030-01-A_hull_vcourse.obj", nomir, ymir, nrev )
+  import( file="../M5030-01-A_transom_vcourse.obj", transom, nomir )
+  import( file="../M5030-01-A_transom_vcourse.obj", transom, nomir, ymir, nrev )
+end
+xptd
+  acce( free = 0.3, body = 0.3 )
+  /dmpz( upst = 1.5, downst = 0.6, side = 0.5, strength=1.0, power=2.0 )
+  dmpz( upst = 1.0, downst = 1.0, side = 1.0, strength=0.5, power=2.0, const )
+  tps ( mesh = 0.00001, inter = 0.00001, slim = 10, wlme = 0.00001, wlin=0.00001 )
+  tran( tfnlow = 0.5, tfnhigh = 4.0)
+  fric( global, form=0.15 )
+  time( seconds, manual, dt=0.05, maxtime = 150, noconv )
+  init( calm )
+  para( nthr = 32 )
+  cont( accx=0.1, calf )
+/  save( dmpz )
+/  e_sa( vel )
+/  i_sa( vel )
+end
+
