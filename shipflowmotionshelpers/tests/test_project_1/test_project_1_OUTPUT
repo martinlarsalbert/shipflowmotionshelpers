@@ -1,0 +1,283 @@
+========================================================================
+ M     M   OO  TTTTT I   OO   N   N  SSS               SHIPFLOW-MOTIONS 
+ MM   MM  O  O   T   I  O  O  NN  N S                                   
+ M M M M  O  O   T   I  O  O  N N N  SSS                 VERSION 6.5.09
+ M  M  M  O  O   T   I  O  O  N  NN     S                               
+ M     M   OO    T   I   OO   N   N  SSS        2020-10-27 at  15:27:35
+========================================================================
+
+************************************************************************
+*  THIS SOFTWARE IS A LICENSED PRODUCT OF FLOWTECH INTERNATIONAL AB,   *
+*  AND MAY ONLY BE USED ACCORDING TO THE TERMS OF THAT LICENSE ON THE  *
+*  SYSTEM IDENTIFIED IN THE LICENSE AGREEMENT. COPYRIGHT (C) 1990 BY   *
+*  FLOWTECH INTERNATIONAL AB. ALL RIGHTS RESERVED.                     *
+************************************************************************
+ Revision: Rev. 12453M
+
+
+ CONFIGURATION MODE (STANDARD/XCONFIG): STANDARD
+
+ NUMBER OF RIGID BODIES:  1
+
+
+ #######################################################################
+ COMMANDS AND KEYWORDS
+ #######################################################################
+
+
+
+ +++++++++++++++++++++++++++
+  RIGID BODY NO. 1 (MASTER)
+ +++++++++++++++++++++++++++
+
+
+ -----------------------------------------------------------------------
+  XFLOW
+ -----------------------------------------------------------------------
+
+  TITLE
+   title  =   M5030-01-A
+
+  HULL
+   bdens  =   6.00000E-01
+   nohr
+
+  OFFSET
+   file   =   ../off_dummy
+   lpp    =   1.54000E+02
+
+  MASS
+   zcg    =   1.09800E+01
+   kxx    =   1.05327E+01
+   kyy    =   4.31200E+01
+   kzz    =   4.28890E+01
+   kxy    =   4.00400E-01
+   kxz    =   7.49980E+00
+   kyz    =   1.23200E-01
+
+  IPOS
+   heel   =   0.00000E+00
+   trim   =  -2.13184E-01
+   surge  =   0.00000E+00
+   sway   =   0.00000E+00
+   heave  =   0.00000E+00
+   roll   =   1.20000E+01
+   pitch  =   0.00000E+00
+   yaw    =   0.00000E+00
+
+  VSHIP
+   fn     =   1.32379E-01
+   rn     =   6.66199E+08
+   refle  =   1.54000E+02
+
+  FIXED
+   surge
+   yaw
+
+  TOWING
+   k1nd   =   1.00000E-01
+   k2nd   =   1.00000E-02
+   k3nd   =   0.00000E+00
+   k4nd   =   0.00000E+00
+   k5nd   =   0.00000E+00
+   k6nd   =   1.00000E-02
+   b1cr   =   1.00000E+00
+   b2cr   =   1.00000E+00
+   b3cr   =   1.00000E+00
+   b4cr   =   1.00000E+00
+   b5cr   =   1.00000E+00
+   b6cr   =   1.00000E+00
+
+  DAMPING
+   b1l    =   0.00000E+00
+   b2l    =   0.00000E+00
+   b3l    =   0.00000E+00
+   b4l    =   0.00000E+00
+   b5l    =   0.00000E+00
+   b6l    =   0.00000E+00
+   b1q    =   0.00000E+00
+   b2q    =   0.00000E+00
+   b3q    =   0.00000E+00
+   b4q    =   0.00000E+00
+   b5q    =   0.00000E+00
+   b6q    =   0.00000E+00
+   b1c    =   0.00000E+00
+   b2c    =   0.00000E+00
+   b3c    =   0.00000E+00
+   b4c    =   0.00000E+00
+   b5c    =   0.00000E+00
+   b6c    =   0.00000E+00
+   rudt   =   0.00000E+00
+   rud1   =   0.00000E+00
+   rud2   =   0.00000E+00
+   rud3   =   0.00000E+00
+   rud4   =   0.00000E+00
+   rud5   =   0.00000E+00
+   rud6   =   0.00000E+00
+
+  FLUID
+   densi  =   1.02600E+03
+   gravi  =   9.80665E+00
+
+  SYMMETRY
+   nosym
+
+
+ -----------------------------------------------------------------------
+  XMTD
+ -----------------------------------------------------------------------
+
+  FREE
+   upstr  =   3.00000E+00
+   downs  =  -3.00000E+00
+   side   =   3.00000E+00
+   ymax   =   3.00000E+00
+   ymin   =  -3.00000E+00
+   npxp   =   24
+   npyp   =   24
+   leve   =   6
+   clev   =   5
+   curv   =   2.00000E-05
+   dofa   =   2.00000E+02
+   dopo   =   1.00000E+00
+   dopa   =   1.00000E+00
+   hull   =   2.00000E-03
+   acto   =   1.00000E+00
+   wlad
+
+  IMPORT
+   file   =   ../M5030-01-A_hull_vcourse.obj
+   xtra   =   0.00000E+00
+   ytra   =   0.00000E+00
+   ztra   =   0.00000E+00
+   xrot   =   0.00000E+00
+   yrot   =   0.00000E+00
+   zrot   =   0.00000E+00
+   xsca   =   1.00000E+00
+   ysca   =   1.00000E+00
+   zsca   =   1.00000E+00
+
+  IMPORT
+   file   =   ../M5030-01-A_hull_vcourse.obj
+   nrev
+   xtra   =   0.00000E+00
+   ytra   =   0.00000E+00
+   ztra   =   0.00000E+00
+   xrot   =   0.00000E+00
+   yrot   =   0.00000E+00
+   zrot   =   0.00000E+00
+   xsca   =   1.00000E+00
+   ysca   =   1.00000E+00
+   zsca   =   1.00000E+00
+   ymir
+
+  IMPORT
+   file   =   ../M5030-01-A_transom_vcourse.obj
+   xtra   =   0.00000E+00
+   ytra   =   0.00000E+00
+   ztra   =   0.00000E+00
+   xrot   =   0.00000E+00
+   yrot   =   0.00000E+00
+   zrot   =   0.00000E+00
+   xsca   =   1.00000E+00
+   ysca   =   1.00000E+00
+   zsca   =   1.00000E+00
+
+  IMPORT
+   file   =   ../M5030-01-A_transom_vcourse.obj
+   nrev
+   xtra   =   0.00000E+00
+   ytra   =   0.00000E+00
+   ztra   =   0.00000E+00
+   xrot   =   0.00000E+00
+   yrot   =   0.00000E+00
+   zrot   =   0.00000E+00
+   xsca   =   1.00000E+00
+   ysca   =   1.00000E+00
+   zsca   =   1.00000E+00
+   ymir
+
+
+ -----------------------------------------------------------------------
+  XPTD
+ -----------------------------------------------------------------------
+
+  ACCELERATE
+   free   =   3.00000E-01
+   body   =   3.00000E-01
+
+  DMPZ
+   upst   =   1.00000E+00
+   down   =   1.00000E+00
+   side   =   1.00000E+00
+   stre   =   5.00000E-01
+   powe   =   2.00000E+00
+
+  TPS
+   mesh   =   1.00000E-05
+   inter  =   1.00000E-05
+   slim   =   1.00000E+01
+   wlme   =   1.00000E-05
+   wlin   =   1.00000E-05
+
+  TRANSOM
+   tfnlo  =   5.00000E-01
+   tfnhi  =   4.00000E+00
+
+  TIME
+   manual
+   seconds
+   dt     =   5.00000E-02
+   nstep  =   3.00000E+01
+   maxti  =   1.50000E+02
+   noconv
+
+  PARA
+   nthr   =   32
+
+  CONTROL
+   accx   =   1.00000E-01
+   calf
+
+  FRICTION
+   global
+   form   =   1.50000E-01
+
+
+ #######################################################################
+ HULL DATA
+ #######################################################################
+
+
+
+ +++++++++++++++++++++++++++
+  RIGID BODY NO. 1 (MASTER)
+ +++++++++++++++++++++++++++
+
+
+  LPP   ( reference length [m] )                        :      154.000
+  B     ( breadth [m] )                                 :       27.001
+  V     ( volume displacement [m^3] )                   :    18972.748
+  S     ( wetted surface area [m^2] )                   :     4718.182
+  m     ( mass [kg] )                                   : 19466039.804
+  LCG%  ( longitudinal CG rel. L/2, fwd+ [%LPP] )       :       -1.214
+  XCG   ( longitudinal CG [m] )                         :       75.130
+  YCG   ( lateral CG [m] )                              :        0.000
+  ZCG   ( vertical CG [m] )                             :       10.980
+  KXX   ( roll radius of gyration [m] )                 :       10.533
+  KYY   ( pitch radius of gyration  )                   :       43.120
+  KZZ   ( yaw radius of gyration [m] )                  :       42.889
+  KXY   ( sqrt(IXY/m) [m] )                             :        0.400
+  KXZ   ( sqrt(IXZ/m) [m] )                             :        7.500
+  KYZ   ( sqrt(IYZ/m) [m] )                             :        0.123
+  IXX   ( roll moment of inertia [kg m^2] )             :   249793.513
+  IYY   ( pitch moment of inertia [kg m^2] )            :  1022633.920
+  IZZ   ( yaw moment of inertia [kg m^2] )              :  1017155.524
+  IXY   ( XY product of inertia [kg m^2] )              :     9495.886
+  IXZ   ( XZ product of inertia [kg m^2] )              :   177865.257
+  IYZ   ( YZ product of inertia [kg m^2] )              :     2921.811
+
+
+SHIPFLOW started: 2020-10-27 at 15:27:33, ended: 2020-10-27 at 18:11:20
+
+

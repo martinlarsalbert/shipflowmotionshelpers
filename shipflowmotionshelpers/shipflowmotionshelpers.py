@@ -65,7 +65,15 @@ def _extract_parameters(s:str)->dict:
     parameters : dict
     
     """
+    # matching: x = ....
     key_value_pairs = re.findall(pattern='(\w+) *= *"*([^ ^, ^" ^ ^\n ^)]+)', string=s)
+    
+    # matching x (jadadajada...)  : ....
+    key_value_pairs_2 = re.findall(pattern='(\w+) *\([^\)]+\) *: *([^\n]+)', string=s)
+
+    # adding the key_value_pairs_2 to the list:
+    key_value_pairs+=key_value_pairs_2  # (This list may contain duplicates so that certain value are overwritten below)
+
     parameters = {}
     for key_value_pair in key_value_pairs:
         key = key_value_pair[0]
