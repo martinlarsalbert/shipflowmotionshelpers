@@ -122,7 +122,43 @@ def extract_parameters_from_file(file_path:str)->pd.Series:
     
     return s_parameters
 
-def load(file_path:str, csv=True)->(pd.Series,pd.DataFrame):
+def load_parameters(file_path:str)->pd.DataFrame:
+    """Load input file, output file and time series from a ShipFlow Motions simulation
+
+    The files should follow the following nameing convention:
+    input file name: {file_path}
+    output file name: {file_path}_OUTPUT
+    output time series: {file_path}_TS.csv or {file_path}.ts
+    
+    Parameters
+    ----------
+    file_path : str
+        file path to the input file name (the other files are assumed to follow the naming convention above)
+        Note! This can also be a list of paths
+    
+    csv : bool
+        Is time series ..._TS.csv or ....ts (csv default)
+
+    Returns
+    ----------
+    parameters : pd.DataFrame
+        All parameters from input file(s) and output file(s)
+        
+    """
+    if isinstance(file_path,str):
+        file_paths=[file_path]
+    else:
+        file_paths = file_path
+
+    df_parameters = pd.DataFrame()
+
+    for file_path in file_paths:
+        parameters = _load_parameters(file_path=file_path)
+        df_parameters =  df_parameters.append(parameters)
+
+    return df_parameters
+
+def _load_parameters(file_path:str)->pd.DataFrame:
     """Load input file, output file and time series from a ShipFlow Motions simulation
 
     The files should follow the following nameing convention:
@@ -140,11 +176,9 @@ def load(file_path:str, csv=True)->(pd.Series,pd.DataFrame):
 
     Returns
     ----------
-    parameters : pd.Series
-        All parameters from input file and output file
-
-    df : pd.DataFrame
-        time series from Motions with time as index
+    parameters : pd.DataFrame
+        All parameters from input file(s) and output file(s)
+        
     """
 
     ## Input parameter file:
@@ -162,12 +196,7 @@ def load(file_path:str, csv=True)->(pd.Series,pd.DataFrame):
     
     parameters = pd.Series(data =data, name=name)
 
-    ## Output time series:
-    if csv:
-        time_series_file_path = '%s_TS.csv' % file_path
-    else:
-        time_series_file_path = '%s.ts' % file_path
+    parameters['file_path'] = file_path
+    
+    return parameters
 
-    df = load_time_series(file_path=time_series_file_path)
-
-    return parameters,df

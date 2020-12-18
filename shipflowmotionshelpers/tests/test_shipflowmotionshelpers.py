@@ -30,15 +30,20 @@ def test_extract_parameters_from_file_output():
     assert parameters['IYZ'] == 2921.811
 
 
-def test_load_all():
+def test_load_parameters_one():
 
     file_path = os.path.join(tests.path_test_project_1,'test_project_1')
-    parameters,df = helpers.load(file_path=file_path)
+    parameters = helpers._load_parameters(file_path=file_path)
     
     assert parameters['title']=="M5030-01-A"
-    assert isinstance(df,pd.DataFrame)
-    assert len(df) > 0
 
+def test_load_parameters_many_one():
+
+    file_path = os.path.join(tests.path_test_project_1,'test_project_1')
+    parameters = helpers.load_parameters(file_path=file_path)
+    
+    assert parameters.loc['test_project_1']['title']=="M5030-01-A"
+    
 
 
 
