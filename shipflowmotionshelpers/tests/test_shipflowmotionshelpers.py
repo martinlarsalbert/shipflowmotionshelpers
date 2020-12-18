@@ -8,9 +8,9 @@ import shipflowmotionshelpers.tests as tests
 import os
 import pandas as pd
 
-def test_load_time_series():
+def test_load_time_series_file():
     file_path = os.path.join(tests.path_test_project_1,'test_project_1_TS.csv')
-    helpers.load_time_series(file_path=file_path)
+    helpers._load_time_series(file_path=file_path)
 
 def test_extract_parameters_from_file_input():
     
@@ -43,7 +43,19 @@ def test_load_parameters_many_one():
     parameters = helpers.load_parameters(file_path=file_path)
     
     assert parameters.loc['test_project_1']['title']=="M5030-01-A"
-    
+
+def test_load_time_series():
+
+    file_path = os.path.join(tests.path_test_project_1,'test_project_1')
+    df_parameters = helpers.load_parameters(file_path=file_path)
+
+    time_series = helpers.load_time_series(df_parameters=df_parameters)
+
+    assert isinstance(time_series, dict)
+    name = df_parameters.iloc[0].name
+    assert  name in time_series
+    assert isinstance(time_series[name], pd.DataFrame)
+
 
 
 

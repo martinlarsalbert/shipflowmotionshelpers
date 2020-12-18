@@ -4,8 +4,9 @@ import pandas as pd
 import numpy as np
 import re
 import os
+from shipflowmotionshelpers import errors
 
-def load_time_series(file_path:str)->pd.DataFrame:
+def _load_time_series(file_path:str)->pd.DataFrame:
     """Load time series from ShipFlowMotions into a pandas data frame
 
     Parameters
@@ -135,10 +136,7 @@ def load_parameters(file_path:str)->pd.DataFrame:
     file_path : str
         file path to the input file name (the other files are assumed to follow the naming convention above)
         Note! This can also be a list of paths
-    
-    csv : bool
-        Is time series ..._TS.csv or ....ts (csv default)
-
+        
     Returns
     ----------
     parameters : pd.DataFrame
@@ -170,9 +168,6 @@ def _load_parameters(file_path:str)->pd.DataFrame:
     ----------
     file_path : str
         file path to the input file name (the other files are assumed to follow the naming convention above)
-    
-    csv : bool
-        Is time series ..._TS.csv or ....ts (csv default)
 
     Returns
     ----------
@@ -196,7 +191,25 @@ def _load_parameters(file_path:str)->pd.DataFrame:
     
     parameters = pd.Series(data =data, name=name)
 
-    parameters['file_path'] = file_path
+    parameters['file_path_ts'] = os.path.abspath('%s_TS.csv' % file_path)
     
     return parameters
 
+def load_time_series(df_parameters:pd.DataFrame):
+    """Load all time series associated with the file sin the df_parameters.
+    
+    Parameters
+    ----------
+    df_parameters : pd.DataFrame
+        Data fram with input and output parameters and with the column "file_path_ts" so that the time series can be found
+    """
+
+    if not 'file_path_ts' in df_parameters:
+        raise errors.TimeSeriesFilePathError('df_parameters must contain the column "file_path_ts"')
+
+    time_series = {}    
+    for name, parameters in df_parameters.iterrows():
+        file_path = parameters['file_path_ts']
+        time_series[name] = _load_time_series(file_path=file_path)
+
+    return time_series
