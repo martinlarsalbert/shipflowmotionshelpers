@@ -121,3 +121,53 @@ def extract_parameters_from_file(file_path:str)->pd.Series:
     s_parameters = pd.Series(data=parameters, name=file_path)
     
     return s_parameters
+
+def load(file_path:str, csv=True)->(pd.Series,pd.DataFrame):
+    """Load input file, output file and time series from a ShipFlow Motions simulation
+
+    The files should follow the following nameing convention:
+    input file name: {file_path}
+    output file name: {file_path}_OUTPUT
+    output time series: {file_path}_TS.csv or {file_path}.ts
+    
+    Parameters
+    ----------
+    file_path : str
+        file path to the input file name (the other files are assumed to follow the naming convention above)
+    
+    csv : bool
+        Is time series ..._TS.csv or ....ts (csv default)
+
+    Returns
+    ----------
+    parameters : pd.Series
+        All parameters from input file and output file
+
+    df : pd.DataFrame
+        time series from Motions with time as index
+    """
+
+    ## Input parameter file:
+    file_path_indata = file_path
+    parameters_in = extract_parameters_from_file(file_path = file_path_indata)
+    
+    ## Output parameter file:
+    file_path_output = '%s_OUTPUT' % file_path
+    parameters_out = extract_parameters_from_file(file_path = file_path_output)
+    
+    ## Joining Input and Output parameters:
+    data = dict(parameters_in)
+    data.update(dict(parameters_out))  # overwriting duplicates
+    _,name = os.path.split(file_path)
+    
+    parameters = pd.Series(data =data, name=name)
+
+    ## Output time series:
+    if csv:
+        time_series_file_path = '%s_TS.csv' % file_path
+    else:
+        time_series_file_path = '%s.ts' % file_path
+
+    df = load_time_series(file_path=time_series_file_path)
+
+    return parameters,df

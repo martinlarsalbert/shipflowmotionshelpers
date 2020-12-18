@@ -6,6 +6,7 @@ import pytest
 from shipflowmotionshelpers import shipflowmotionshelpers as helpers
 import shipflowmotionshelpers.tests as tests
 import os
+import pandas as pd
 
 def test_load_time_series():
     file_path = os.path.join(tests.path_test_project_1,'test_project_1_TS.csv')
@@ -27,6 +28,18 @@ def test_extract_parameters_from_file_output():
     assert parameters['lpp'] == 154
     assert parameters['V'] == 18972.748
     assert parameters['IYZ'] == 2921.811
+
+
+def test_load_all():
+
+    file_path = os.path.join(tests.path_test_project_1,'test_project_1')
+    parameters,df = helpers.load(file_path=file_path)
+    
+    assert parameters['title']=="M5030-01-A"
+    assert isinstance(df,pd.DataFrame)
+    assert len(df) > 0
+
+
 
 
 
