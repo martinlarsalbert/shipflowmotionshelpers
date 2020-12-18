@@ -27,8 +27,8 @@ def _load_time_series(file_path:str)->pd.DataFrame:
     else:
         raise ValueError('Unknown time series file extension:%s' % ext)
 
-    df['phi1d'] = df['V4']
-    df['phi2d'] = df['A4']
+    df['phi1d'] = np.deg2rad(df['V4'])
+    df['phi2d'] = np.deg2rad(df['A4'])
     
     return df
 
