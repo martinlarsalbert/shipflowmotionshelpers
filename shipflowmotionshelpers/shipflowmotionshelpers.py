@@ -21,11 +21,16 @@ def _load_time_series(file_path:str)->pd.DataFrame:
     """
     _,ext = os.path.splitext(file_path)
     if ext == '.csv':
-        return _load_motions_csv(file_path=file_path)
+        df = _load_motions_csv(file_path=file_path)
     elif ext == '.ts':
-        return _load_motions_old(file_path=file_path)
+        df = _load_motions_old(file_path=file_path)
     else:
         raise ValueError('Unknown time series file extension:%s' % ext)
+
+    df['phi1d'] = df['V4']
+    df['phi2d'] = df['A4']
+    
+    return df
 
 def _load_motions_old(file_path:str):
     """
